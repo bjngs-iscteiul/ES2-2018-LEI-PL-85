@@ -1,7 +1,30 @@
-h1{
-    color:#0000FF;
+body{
+    font-family: 'Montserrat';
 }
 
-h2{
-    color:#FF0000;
+h1{
+    color: #1e9c5a;
+}
+
+.linkHeader{
+    text-decoration: none;
+    color: #757575;
+}
+
+.linkHeader:hover{
+    color: #1e9c5a;
+}
+
+table{
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #1e9c5a;
 }

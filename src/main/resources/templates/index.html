@@ -3,17 +3,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spring Boot Thymeleaf Hello World Example</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type"  name="viewport" content="width=device-width, initial-scale=1.0, text/html, charset=UTF-8"/>
+    <!-- <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
-    <link rel="stylesheet" type="text/css"
-          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-    <link rel="stylesheet" th:href="@{/css/main.css}"
-          href="../../css/main.css" />
 
 </head>
-<body>
+<header>
+    <table cellspacing="30">
+        <th>
+            <a class="linkHeader" href="index.html">HOME</a>
+        </th>
+        <th>
+            <a class="linkHeader" href="problemView.html">PROBLEM</a>
+        </th>
+        <th>
+            <a class="linkHeader" href="faq.html">FAQ</a>
+        </th>
+        <th>
+            <a class="linkHeader" href="helpEmail.html">SUPPORT</a>
+        </th>
+    </table>
+</header>
+<hr>
 
+<!--
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -38,11 +54,9 @@
     </div>
 
 </div>
-<!-- /.container -->
 
-<script type="text/javascript"
-        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
 </body>
 </html>
 
