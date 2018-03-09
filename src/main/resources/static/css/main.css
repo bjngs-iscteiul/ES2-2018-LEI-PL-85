@@ -1,6 +1,5 @@
 body{
     font-family: 'Montserrat';
-    font-size: x-large;
 }
 
 h1{
@@ -17,6 +16,7 @@ h1{
 }
 
 table{
+    font-size: x-large;
     margin-left: auto;
     margin-right: auto;
 }
