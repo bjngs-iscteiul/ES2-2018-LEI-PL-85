@@ -64,6 +64,8 @@ textarea:focus, input:focus {
     cursor: pointer;
 }
 
+
+
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
 input:focus::-moz-placeholder { color:transparent; }
@@ -369,4 +371,3 @@ textarea.input2 + .focus-input2::after {
         opacity: 1;
     }
 }
-
