@@ -35,6 +35,35 @@ textarea:focus, input:focus {
     border-color: transparent !important;
 }
 
+.uppercase{
+
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
 input:focus::-moz-placeholder { color:transparent; }
@@ -214,6 +243,7 @@ textarea.input2 + .focus-input2::after {
     padding-top: 13px;
 }
 
+
 .wrap-contact2-form-btn {
     display: block;
     position: relative;
@@ -224,16 +254,13 @@ textarea.input2 + .focus-input2::after {
     margin: 0 auto;
 }
 
+
 .contact2-form-bgbtn {
     position: absolute;
     z-index: -1;
     width: 300%;
     height: 100%;
     background: rgb(30, 156, 90);
-    /*background: -webkit-linear-gradient(-135deg, #1e9c5a, #34e883, #1e9c5a, #34e883);
-    background: -o-linear-gradient(-135deg, #1e9c5a, #34e883, #1e9c5a, #34e883);
-    background: -moz-linear-gradient(-135deg, #1e9c5a, #34e883, #1e9c5a, #34e883);
-    background: linear-gradient(-135deg, #1e9c5a, #34e883, #1e9c5a, #34e883);*/
     top: 0;
     left: -100%;
     -webkit-transition: all 0.4s;
@@ -241,6 +268,7 @@ textarea.input2 + .focus-input2::after {
     -moz-transition: all 0.4s;
     transition: all 0.4s;
 }
+
 
 .contact2-form-btn {
     display: -webkit-box;
@@ -253,6 +281,21 @@ textarea.input2 + .focus-input2::after {
     padding: 0 20px;
     min-width: 244px;
     height: 50px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.contact3-form-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding: 0 20px;
+    height: 25px;
     font-size: 16px;
     color: #fff;
     line-height: 1.2;
