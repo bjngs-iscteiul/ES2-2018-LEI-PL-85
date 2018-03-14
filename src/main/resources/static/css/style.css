@@ -1,58 +1,6 @@
-/* -------------------------------- 
-
-Primary style
-
--------------------------------- */
-
-*::after, *::before {
-  content: '';
+ol, ul {
+  list-style: none;
 }
-
-body {
-  font-size: 100%;
-  font-family: "Open Sans", sans-serif;
-  color: #1e9c5a;
-  background-color: #f3f3f5;
-}
-
-a {
-  color: #1e9c5a;
-  text-decoration: none;
-}
-
-/* -------------------------------- 
-
-Main components 
-
--------------------------------- */
-header {
-  position: relative;
-  height: 180px;
-  line-height: 180px;
-  text-align: center;
-  background-color: white;
-}
-
-table{
-  font-size: x-large;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.linkHeader{
-  text-decoration: none;
-  color: #757575;
-}
-
-.linkHeader:hover{
-  color: #1e9c5a;
-}
-
-body{
-  font-family: 'Montserrat';
-}
-
-
 
 @media only screen and (min-width: 768px) {
   .cd-close-panel {
@@ -102,11 +50,11 @@ body{
 }
 
 .cd-faq-trigger {
-   position: relative;
-   display: block;
-   margin: 1.6em 0 .4em;
-   line-height: 1.2;
- }
+  position: relative;
+  display: block;
+  margin: 1.6em 0 .4em;
+  line-height: 1.2;
+}
 @media only screen and (min-width: 768px) {
   .cd-faq-trigger {
     font-size: 24px;
