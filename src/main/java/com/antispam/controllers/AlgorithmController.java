@@ -1,4 +1,4 @@
-package com.antispam.web;
+package com.antispam.controllers;
 
 import java.util.Map;
 
