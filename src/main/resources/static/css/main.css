@@ -6,6 +6,10 @@ h1{
     color: #1e9c5a;
 }
 
+h2{
+    font-size: large;
+}
+
 .linkHeader{
     text-decoration: none;
     color: #757575;
@@ -13,6 +17,24 @@ h1{
 
 .linkHeader:hover{
     color: #1e9c5a;
+}
+
+#topHeader{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#bottomFooter{
+    background-color: #f7f7f7;
+    bottom: 0;
+}
+
+.footerLinks{
+    color: #585858;
+    font-size: medium;
 }
 
 table{
