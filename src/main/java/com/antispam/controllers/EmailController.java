@@ -91,7 +91,7 @@ public class EmailController {
         emailManager.sendSimpleMessage(mailObject.getTo(),
                 mailObject.getSubject(), mailObject.getText());
 
-        return "redirect:/home";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/sendTemplate", method = RequestMethod.POST)
@@ -106,7 +106,7 @@ public class EmailController {
                 template,
                 mailObject.getText());
 
-        return "redirect:/home";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/sendAttachment", method = RequestMethod.POST)
@@ -123,6 +123,6 @@ public class EmailController {
                 attachmentPath
         );
 
-        return "redirect:/home";
+        return "redirect:/index";
     }
 }
