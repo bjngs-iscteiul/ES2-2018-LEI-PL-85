@@ -1,4 +1,4 @@
-package com.antispam.web;
+package com.antispam;
 
 public class Problem extends AbstractDoubleProblem {
 
@@ -45,7 +45,7 @@ public class Problem extends AbstractDoubleProblem {
      *
      * @param numberOfVariables Number of variables of the problem
      */
-    public AntiSpamFilterProblem(Integer numberOfVariables) {
+    public Problem(Integer numberOfVariables) {
         Debug.IN("AntiSpamFilterProblem [Constructor(INTEGER)]");
 
         //TODO

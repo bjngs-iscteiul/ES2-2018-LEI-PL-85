@@ -1,8 +1,9 @@
-package com.antispam.web;
+package com.antispam;
 
 public class AutomaticConfiguration {
     private final int INDEPENDENT_RUNS = 5 ;
     private Problem problem ;
+    private String AlgorithmName;
 
 
     public AutomaticConfiguration(Problem problem){
@@ -15,7 +16,7 @@ public class AutomaticConfiguration {
 
         List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
 
-        problemList.add(new ExperimentProblem<>(Problem, "Problem"));
+        problemList.add(new ExperimentProblem<>(problem, "Problem"));
 
         List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithmList =
                 configureAlgorithmList(problemList);
