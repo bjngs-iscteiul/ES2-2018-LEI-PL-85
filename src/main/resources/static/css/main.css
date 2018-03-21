@@ -32,7 +32,7 @@ h2{
     bottom: 0;
 }
 
-a:#bottomFooter{
+.footerLinks{
     color: #585858;
     font-size: medium;
 }
