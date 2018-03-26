@@ -1,6 +1,6 @@
 package com.antispam.web;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.antispam.jmetalapplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;

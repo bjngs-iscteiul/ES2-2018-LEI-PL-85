@@ -1,9 +1,38 @@
 package com.antispam;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import org.uma.jmetal.algorithm.Algorithm;
+import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
+import org.uma.jmetal.operator.impl.crossover.SBXCrossover;
+import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
+
+
+import org.uma.jmetal.problem.Problem;
+import org.uma.jmetal.problem.multiobjective.zdt.*;
+import org.uma.jmetal.qualityindicator.impl.*;
+import org.uma.jmetal.qualityindicator.impl.hypervolume.PISAHypervolume;
+import org.uma.jmetal.solution.DoubleSolution;
+import org.uma.jmetal.util.JMetalException;
+import org.uma.jmetal.util.experiment.Experiment;
+import org.uma.jmetal.util.experiment.ExperimentBuilder;
+import org.uma.jmetal.util.experiment.component.*;
+import org.uma.jmetal.util.experiment.util.ExperimentAlgorithm;
+import org.uma.jmetal.util.experiment.util.ExperimentProblem;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+@SpringBootApplication
 public class AutomaticConfiguration {
     private final int INDEPENDENT_RUNS = 5 ;
     private Problem problem ;
-    private String AlgorithmName;
+    private static String AlgorithmName;
+
+
 
 
     public AutomaticConfiguration(Problem problem){
@@ -14,7 +43,8 @@ public class AutomaticConfiguration {
     public void INIT(String AlgorithmName) throws IOException {
         String experimentBaseDirectory = "experimentBaseDirectory";
 
-        List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
+        List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<ExperimentProblem<DoubleSolution>>();
+
 
         problemList.add(new ExperimentProblem<>(problem, "Problem"));
 
@@ -52,7 +82,7 @@ public class AutomaticConfiguration {
             System.out.println("Erro no experiment jmetal");
             //System.out.println("Experiment" + experiment);
         }
-        Debug.OUT("AntiSpamFilterAutomaticConfiguration [MAIN]");
+       
     }
 
     static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(

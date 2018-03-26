@@ -1,5 +1,15 @@
 package com.antispam;
 
+import com.intellij.spellchecker.FileLoader;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
+import org.uma.jmetal.solution.DoubleSolution;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+@SpringBootApplication
 public class Problem extends AbstractDoubleProblem {
 
     private LinkedHashMap<String, ArrayList<String>> ham;
@@ -12,7 +22,7 @@ public class Problem extends AbstractDoubleProblem {
     private String pathSpam;
     private String pathrules;
 
-    private LinkedHashMap <String,Double> rules = FileLoader.getInstance().getRulesMap();
+    //private LinkedHashMap <String,Double> rules = FileLoader.getInstance().getRulesMap();
 
     public double getCountFP() {
         return countFP;
@@ -29,12 +39,11 @@ public class Problem extends AbstractDoubleProblem {
         // 10 variables (anti-spam filter rules) by default
         //TODO getNumberOfRules file rules
         //FileLoader.getInstance().manualStart(pathrules, pathHam, pathSpam);
-        this(FileLoader.getInstance().getRulesMap().size());
+
+        //TODO LER RULES
+        //this(FileLoader.getInstance().getRulesMap().size());
 
         //TODO Create GetPath's to Rules, Ham, Spam of GUI
-        Debug.getInstance();
-        Debug.IN("AntiSpamFilterProblem [Constructor]");
-        Debug.OUT("AntiSpamFilterProblem [Constructor]");
     }
 
 
@@ -46,64 +55,35 @@ public class Problem extends AbstractDoubleProblem {
      * @param numberOfVariables Number of variables of the problem
      */
     public Problem(Integer numberOfVariables) {
-        Debug.IN("AntiSpamFilterProblem [Constructor(INTEGER)]");
 
-        //TODO
-        ham = FileLoader.getInstance().getHamRulesMap();
-        spam= FileLoader.getInstance().getSpamRulesMap();
+        //TODO get rules
+        //ham = FileLoader.getInstance().getHamRulesMap();
+        //spam= FileLoader.getInstance().getSpamRulesMap();
 
 
         setNumberOfVariables(numberOfVariables);
         setNumberOfObjectives(2);// FN & FP
         setName("AntiSpamFilterProblem");
 
-        List<Double> lowerLimit = new ArrayList<>(getNumberOfVariables()) ;
-        List<Double> upperLimit = new ArrayList<>(getNumberOfVariables()) ;
+        List<Double> lowerLimit = new ArrayList<Double>(getNumberOfVariables()) ;
+        List<Double> upperLimit = new ArrayList<Double>(getNumberOfVariables()) ;
+
         int y = getNumberOfVariables();
         for (int i = 0; i < getNumberOfVariables(); i++) {
             lowerLimit.add(-5.0);
             upperLimit.add(5.0);
         }
 
-        setLowerLimit(lowerLimit);
-        setUpperLimit(upperLimit);
 
-        Debug.OUT("AntiSpamFilterProblem [Constructor(INTEGER)]");
-    }
+        //SET LIMITS
 
-    //ver metodo rules a entrar vazias.
-    /** Evaluate() method */
-    public void evaluate(DoubleSolution solution){
-        Debug.IN("AntiSpamFilterProblem [evaluate(DoubleSolution)]");
+        //setLowerLimit(lowerLimit);
+        //setUpperLimit(upperLimit);
 
-        //tratamento de dados
-        int iterator = 0;
-        for (Entry<String, Double> rule : rules.entrySet()){
-            rule.setValue(solution.getVariableValue(iterator));
-            iterator++;
-        }
-
-
-        Debug.msg("Call evaluate(rules)");
-        double [] fx = evaluate(rules);
-
-        solution.setObjective(0, fx[0]); //objective 0 fx[0] will be subst by FN
-        solution.setObjective(1, fx[1]); //objective 1 fx[1] will be subst by FP
-        Debug.OUT("AntiSpamFilterProblem [evaluate(DoubleSolution)]");
     }
 
 
-    public double[] evaluate(LinkedHashMap <String,Double> rules){
-       //CALL JAR
-        trow NotImplementedException;
-        double [] temp = {0.0};
-        return temp;
-    }
 
-
-    public LinkedHashMap<String, Double> getRules() {
-        return rules;
-    }
 
 
     public LinkedHashMap<String, ArrayList<String>> getHam() {
@@ -121,9 +101,6 @@ public class Problem extends AbstractDoubleProblem {
         return result;
     }
 
-    public boolean validLists() {
-        return !rules.isEmpty() && !ham.isEmpty() && !spam.isEmpty();
-    }
 
 
     public void setPathHam(String pathHam) {
@@ -140,4 +117,22 @@ public class Problem extends AbstractDoubleProblem {
         this.pathrules = pathrules;
     }
 
+    @Override
+    public void evaluate(DoubleSolution solution) {
+
+        //TODO Fazer tratamento de dados se necessario.
+        //tratamento de dados
+//        int iterator = 0;
+//        for (entry<string, double> rule : rules.entryset()){
+//            rule.setvalue(solution.getvariablevalue(iterator));
+//            iterator++;
+//        }
+        //TODO Aqui deverá ser chamado o evaluate dado atraves de JAR!
+        //double [] fx = evaluate(rules);
+
+        //TODO SET OBJECTIVE NOVAMENTE PARA O EVALUATE
+        //solution.setObjective(0, fx[0]); //objective 0 fx[0] will be subst by FN
+        //solution.setObjective(1, fx[1]); //objective 1 fx[1] will be subst by FP
+
+    }
 }
