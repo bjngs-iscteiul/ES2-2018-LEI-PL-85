@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <meta http-equiv="Content-Type" name="viewport"
+          content="width=device-width, initial-scale=1.0, text/html, charset=UTF-8"/>
+    <!-- <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<header id="topHeader">
+</header>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>JMetalExample</h1>
+            <!--/*@thymesVar id="algorithms" type=""*/-->
+            <span th:each="algorithm : ${algorithms}">
+                    <p th:text="'Algorithm: ' + ${algorithm}"></p>
+            </span>
+    </div>
+
+</div>
+
+
+<script src="../scripts/jquery-3.2.1.min.js"></script>
+<script src="../scripts/addHeader.js"></script>
+</body>
+</html>
