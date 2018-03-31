@@ -40,9 +40,9 @@ public class EmailController {
 
 
         ClassPathResource file = new ClassPathResource("/config.xml");
-//        if (file.exists()){
+        if (file.exists()){
             helper.addAttachment("config.xml", file);
-//        }
+        }
 
         sender.send(message);
     }
