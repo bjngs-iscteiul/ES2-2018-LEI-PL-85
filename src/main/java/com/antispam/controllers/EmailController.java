@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.mail.internet.MimeMessage;
 import org.springframework.core.io.ClassPathResource;
 
+/**
+ *
+ */
 @Controller
 
 public class EmailController {
@@ -16,6 +19,10 @@ public class EmailController {
     @Autowired
     private JavaMailSender sender;
 
+    /**
+     * @param model
+     * @return
+     */
     @GetMapping("/email")
     public String emailSender(Model model){
         String message = "";
@@ -29,6 +36,9 @@ public class EmailController {
         return "email-confirmation";
     }
 
+    /**
+     * @throws Exception
+     */
     private void sendEmail()throws Exception{
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);

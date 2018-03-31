@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+/**
+ *
+ */
 @SpringBootApplication
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
@@ -23,17 +26,25 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
     //private LinkedHashMap <String,Double> rules = FileLoader.getInstance().getRulesMap();
 
+    /**
+     * @return
+     */
     public double getCountFP() {
         return countFP;
     }
 
 
+    /**
+     * @return
+     */
     public double getCountFN() {
         return countFN;
     }
 
 
-
+    /**
+     *
+     */
     public AntiSpamFilterProblem() {
         // 10 variables (anti-spam filter rules) by default
         //TODO getNumberOfRules file rules
@@ -82,18 +93,24 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
     }
 
 
-
-
-
+    /**
+     * @return
+     */
     public LinkedHashMap<String, ArrayList<String>> getHam() {
         return ham;
     }
 
 
+    /**
+     * @return
+     */
     public LinkedHashMap<String, ArrayList<String>> getSpam() {
         return spam;
     }
 
+    /**
+     * @return
+     */
     //Manual calculation of FN and FP
     public int[] getManualFN_FP(){
         int[] result = new int[2];
@@ -101,21 +118,32 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
     }
 
 
-
+    /**
+     * @param pathHam
+     */
     public void setPathHam(String pathHam) {
         this.pathHam = pathHam;
     }
 
 
+    /**
+     * @param pathSpam
+     */
     public void setPathSpam(String pathSpam) {
         this.pathSpam = pathSpam;
     }
 
 
+    /**
+     * @param pathrules
+     */
     public void setPathrules(String pathrules) {
         this.pathrules = pathrules;
     }
 
+    /**
+     * @param solution
+     */
     @Override
     public void evaluate(DoubleSolution solution) {
 
