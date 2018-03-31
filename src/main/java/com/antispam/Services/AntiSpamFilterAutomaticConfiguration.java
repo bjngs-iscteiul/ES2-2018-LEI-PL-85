@@ -26,6 +26,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
+/**
+ *
+ */
 @SpringBootApplication
 public class AntiSpamFilterAutomaticConfiguration {
     private final int INDEPENDENT_RUNS = 5 ;
@@ -33,8 +36,9 @@ public class AntiSpamFilterAutomaticConfiguration {
     private static String AlgorithmName;
 
 
-
-
+    /**
+     * @param problem
+     */
     public AntiSpamFilterAutomaticConfiguration(Problem problem){
         this.problem = problem;
     }
@@ -85,6 +89,10 @@ public class AntiSpamFilterAutomaticConfiguration {
        
     }
 
+    /**
+     * @param problemList
+     * @return
+     */
     static List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> configureAlgorithmList(
             List<ExperimentProblem<DoubleSolution>> problemList) {
 
@@ -104,6 +112,9 @@ public class AntiSpamFilterAutomaticConfiguration {
         return algorithms;
     }
 
+    /**
+     * @return
+     */
     public Problem getProblem() {
         return this.problem;
     }

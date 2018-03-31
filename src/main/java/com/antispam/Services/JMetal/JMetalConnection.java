@@ -2,8 +2,14 @@ package com.antispam.Services.JMetal;
 
 import java.io.File;
 
+/**
+ *
+ */
 public class JMetalConnection {
 
+    /**
+     * @return
+     */
     public File[] GetAlgorithmsList(){
 
         File folder = new File(
@@ -17,6 +23,9 @@ public class JMetalConnection {
         return listoffiles;
     }
 
+    /**
+     * @return
+     */
     public String[] TestMethod (){
         String[] list = new String[3];
         list[0] = "teste";
