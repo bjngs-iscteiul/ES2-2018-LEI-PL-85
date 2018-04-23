@@ -1,45 +1,44 @@
 package org.uma.jmetal.runner.multiobjective;
 
 import org.uma.jmetal.algorithm.Algorithm;
-import org.uma.jmetal.algorithm.multiobjective.abyss.ABYSSBuilder;
+import org.uma.jmetal.algorithm.multiobjective.smpso.SMPSOBuilder;
+import org.uma.jmetal.operator.MutationOperator;
+import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
 import org.uma.jmetal.problem.DoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
 import org.uma.jmetal.util.AlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
-import org.uma.jmetal.util.archive.Archive;
+import org.uma.jmetal.util.archive.BoundedArchive;
 import org.uma.jmetal.util.archive.impl.CrowdingDistanceArchive;
+import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
- * This class is the main program used to configure and run AbYSS, a
- * multiobjective scatter search metaheuristics, which is described in:
- *   A.J. Nebro, F. Luna, E. Alba, B. Dorronsoro, J.J. Durillo, A. Beham
- *   "AbYSS: Adapting Scatter Search to Multiobjective Optimization."
- *   IEEE Transactions on Evolutionary Computation. Vol. 12,
- *   No. 4 (August 2008), pp. 439-457
+ * Class for configuring and running the SMPSO algorithm
  *
- *   @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class ABYSSRunner extends AbstractAlgorithmRunner {
-
-private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer>();
+public class SMPSORunner extends AbstractAlgorithmRunner {
   /**
-   * @param args Command line arguments.
-   * @throws JMetalException
-   * @throws FileNotFoundException
+   * @param args Command line arguments. The first (optional) argument specifies
+   *             the problem to solve.
+   * @throws org.uma.jmetal.util.JMetalException
+   * @throws java.io.IOException
+   * @throws SecurityException
    * Invoking command:
-  java org.uma.jmetal.runner.multiobjective.AbYSSRunner problemName [referenceFront]
+  java org.uma.jmetal.runner.multiobjective.SMPSORunner problemName [referenceFront]
    */
   public static void main(String[] args) throws Exception {
     DoubleProblem problem;
     Algorithm<List<DoubleSolution>> algorithm;
-    String problemName ;
+    MutationOperator<DoubleSolution> mutation;
 
     String referenceParetoFront = "" ;
+
+    String problemName ;
     if (args.length == 1) {
       problemName = args[0];
     } else if (args.length == 2) {
@@ -52,14 +51,21 @@ private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer
 
     problem = (DoubleProblem) ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    Archive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(hmapProperty.get("maxSize")) ;
+    BoundedArchive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(100) ;
 
-    algorithm = new ABYSSBuilder(problem, archive)
-            .setMaxEvaluations(hmapProperty.get("MaxEvaluations"))
-            .build();
+    double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
+    double mutationDistributionIndex = 20.0 ;
+    mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
+
+    algorithm = new SMPSOBuilder(problem, archive)
+        .setMutation(mutation)
+        .setMaxIterations(250)
+        .setSwarmSize(100)
+        .setSolutionListEvaluator(new SequentialSolutionListEvaluator<DoubleSolution>())
+        .build();
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
-            .execute();
+        .execute();
 
     List<DoubleSolution> population = algorithm.getResult();
     long computingTime = algorithmRunner.getComputingTime();
@@ -70,15 +76,5 @@ private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer
     if (!referenceParetoFront.equals("")) {
       printQualityIndicators(population, referenceParetoFront) ;
     }
-  }
-
-  public void setHmapProperty(Integer maxSize , Integer MaxEvaluations){
-    hmapProperty.clear();
-    hmapProperty.put("maxSize",maxSize);
-    hmapProperty.put("MaxEvaluations",MaxEvaluations);
-  }
-
-  public HashMap<String,Integer> getHmapProperty(){
-    return this.hmapProperty;
   }
 }

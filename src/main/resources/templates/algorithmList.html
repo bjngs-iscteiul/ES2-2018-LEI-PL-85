@@ -20,7 +20,9 @@
         <h1>JMetalExample</h1>
             <!--/*@thymesVar id="algorithms" type=""*/-->
             <span th:each="algorithm : ${algorithms}">
-                    <p th:text="'Algorithm: ' + ${algorithm}"></p>
+                    <p th:text="'<AlgorithmRunner><name>'
+                + ${algorithm}
+                +'</name></AlgorithmRunner>'"></p>
             </span>
     </div>
 

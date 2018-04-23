@@ -12,6 +12,7 @@ import org.uma.jmetal.util.archive.Archive;
 import org.uma.jmetal.util.archive.impl.CrowdingDistanceArchive;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,9 +25,10 @@ import java.util.List;
  *
  *   @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class ABYSSRunner extends AbstractAlgorithmRunner {
+public class ABYSS_Runner extends AbstractAlgorithmRunner {
+  private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer>();
 
-private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer>();
+
   /**
    * @param args Command line arguments.
    * @throws JMetalException
@@ -55,11 +57,11 @@ private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer
     Archive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(hmapProperty.get("maxSize")) ;
 
     algorithm = new ABYSSBuilder(problem, archive)
-            .setMaxEvaluations(hmapProperty.get("MaxEvaluations"))
-            .build();
+        .setMaxEvaluations(hmapProperty.get("MaxEvaluations"))
+        .build();
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
-            .execute();
+        .execute();
 
     List<DoubleSolution> population = algorithm.getResult();
     long computingTime = algorithmRunner.getComputingTime();
@@ -77,7 +79,6 @@ private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer
     hmapProperty.put("maxSize",maxSize);
     hmapProperty.put("MaxEvaluations",MaxEvaluations);
   }
-
   public HashMap<String,Integer> getHmapProperty(){
     return this.hmapProperty;
   }

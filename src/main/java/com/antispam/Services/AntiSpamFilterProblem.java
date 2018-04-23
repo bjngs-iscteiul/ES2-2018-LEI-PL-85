@@ -1,5 +1,6 @@
 package com.antispam.Services;
 
+import fileLoader.FileLoader;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
@@ -7,12 +8,13 @@ import org.uma.jmetal.solution.DoubleSolution;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- *
- */
+import static fileLoader.FileLoader.getInstance;
+
 @SpringBootApplication
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
+
 
     private LinkedHashMap<String, ArrayList<String>> ham;
     private LinkedHashMap<String, ArrayList<String>> spam;
@@ -24,36 +26,34 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
     private String pathSpam;
     private String pathrules;
 
+    private LinkedHashMap <String,Double> rules =getInstance().getRulesMap();
+
     //private LinkedHashMap <String,Double> rules = FileLoader.getInstance().getRulesMap();
 
-    /**
-     * @return
-     */
     public double getCountFP() {
         return countFP;
     }
 
 
-    /**
-     * @return
-     */
     public double getCountFN() {
         return countFN;
     }
 
 
-    /**
-     *
-     */
+
     public AntiSpamFilterProblem() {
+
         // 10 variables (anti-spam filter rules) by default
         //TODO getNumberOfRules file rules
         //FileLoader.getInstance().manualStart(pathrules, pathHam, pathSpam);
 
         //TODO LER RULES
-        //this(FileLoader.getInstance().getRulesMap().size());
+        this(FileLoader.getInstance().getRulesMap().size());
+        Tools.Debug.IN("AntiSpamFilterProblem()");
+        Tools.Debug.msg("Rules size: " + FileLoader.getInstance().getRulesMap().size());
 
         //TODO Create GetPath's to Rules, Ham, Spam of GUI
+        Tools.Debug.OUT("AntiSpamFilterProblem()");
     }
 
 
@@ -65,20 +65,23 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
      * @param numberOfVariables Number of variables of the problem
      */
     public AntiSpamFilterProblem(Integer numberOfVariables) {
-
+        Tools.Debug.IN("AntiSpamFilterProblem");
         //TODO get rules
-        //ham = FileLoader.getInstance().getHamRulesMap();
-        //spam= FileLoader.getInstance().getSpamRulesMap();
+        ham = FileLoader.getInstance().getHamRulesMap();
+        spam = FileLoader.getInstance().getSpamRulesMap();
 
-
+        Tools.Debug.msg("Numero de variaveis: " + numberOfVariables);
         setNumberOfVariables(numberOfVariables);
         setNumberOfObjectives(2);// FN & FP
         setName("AntiSpamFilterProblem");
 
-        List<Double> lowerLimit = new ArrayList<Double>(getNumberOfVariables()) ;
-        List<Double> upperLimit = new ArrayList<Double>(getNumberOfVariables()) ;
+
+        //
+        List<Double> lowerLimit = new ArrayList<>(getNumberOfVariables()) ;
+        List<Double> upperLimit = new ArrayList<>(getNumberOfVariables()) ;
 
         int y = getNumberOfVariables();
+        Tools.Debug.msg("Numero de variaveis: [getNumberOfVariables()]" + y);
         for (int i = 0; i < getNumberOfVariables(); i++) {
             lowerLimit.add(-5.0);
             upperLimit.add(5.0);
@@ -87,30 +90,24 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
         //SET LIMITS
 
-        //setLowerLimit(lowerLimit);
-        //setUpperLimit(upperLimit);
-
+        setLowerLimit(lowerLimit);
+        setUpperLimit(upperLimit);
+        Tools.Debug.OUT("AntiSpamFilterProblem");
     }
 
 
-    /**
-     * @return
-     */
+
+
+
     public LinkedHashMap<String, ArrayList<String>> getHam() {
         return ham;
     }
 
 
-    /**
-     * @return
-     */
     public LinkedHashMap<String, ArrayList<String>> getSpam() {
         return spam;
     }
 
-    /**
-     * @return
-     */
     //Manual calculation of FN and FP
     public int[] getManualFN_FP(){
         int[] result = new int[2];
@@ -118,33 +115,26 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
     }
 
 
-    /**
-     * @param pathHam
-     */
+
     public void setPathHam(String pathHam) {
         this.pathHam = pathHam;
     }
 
 
-    /**
-     * @param pathSpam
-     */
     public void setPathSpam(String pathSpam) {
         this.pathSpam = pathSpam;
     }
 
 
-    /**
-     * @param pathrules
-     */
     public void setPathrules(String pathrules) {
         this.pathrules = pathrules;
     }
 
-    /**
-     * @param solution
-     */
     @Override
+    //tb pode receber BinarySolution -> ver em jmetal solution
+   // doubleSolution
+    //IntegerSolution
+    //permutation
     public void evaluate(DoubleSolution solution) {
 
         //TODO Fazer tratamento de dados se necessario.
@@ -161,5 +151,66 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
         //solution.setObjective(0, fx[0]); //objective 0 fx[0] will be subst by FN
         //solution.setObjective(1, fx[1]); //objective 1 fx[1] will be subst by FP
 
+
+
+        Tools.Debug.IN("AntiSpamFilterProblem [evaluate(DoubleSolution)]");
+
+        //tratamento de dados
+        int iterator = 0;
+        for (Map.Entry<String, Double> rule : rules.entrySet()){
+            rule.setValue(solution.getVariableValue(iterator));
+            iterator++;
+        }
+
+
+        Tools.Debug.msg("Call evaluate(rules)");
+        double [] fx = evaluate(rules);
+
+        solution.setObjective(0, fx[0]); //objective 0 fx[0] will be subst by FN
+        solution.setObjective(1, fx[1]); //objective 1 fx[1] will be subst by FP
+        Tools.Debug.OUT("AntiSpamFilterProblem [evaluate(DoubleSolution)]");
+
+
+
+    }
+
+    public double[] evaluate(LinkedHashMap <String,Double> rules){
+        Tools.Debug.IN("Evaluate");
+        double[] fx = new double[getNumberOfObjectives()];
+
+        fx[0] = 0.0;
+        for (Map.Entry<String, ArrayList<String>> hamRule : ham.entrySet()) {
+            double count = 0.0;
+            for (String hamRules : hamRule.getValue()) {
+                if (rules.containsKey(hamRules)) {
+                    count += rules.get(hamRules);
+                }
+            }
+            if (count > algorithmLimit) {
+                fx[0]++;
+            }
+        }
+
+
+        fx[1] = 0.0;
+        for (Map.Entry<String, ArrayList<String>> spamRule : spam.entrySet()) {
+            double count = 0.0;
+            for (String spamRules : spamRule.getValue()) {
+                if (rules.containsKey(spamRules)) {
+                    count += rules.get(spamRules);
+                }
+            }
+            if (count < algorithmLimit) {
+                fx[1]++;
+            }
+        }
+        Tools.Debug.msg("Return fx=["+fx[0]+"|"+fx[1]+"]");
+
+        Tools.Debug.OUT("Evaluate");
+        return fx;
+    }
+
+    public LinkedHashMap<String, Double> getRules() {
+        return rules;
     }
 }

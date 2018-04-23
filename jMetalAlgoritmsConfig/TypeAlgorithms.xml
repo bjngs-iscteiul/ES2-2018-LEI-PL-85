@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<root>
+    <Problem>
+
+        JMetalExample
+
+        <AlgorithmRunner>
+            <name>ParallelSPEA2Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIMeasuresRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>WASFGAMeasuresRunner3D.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIMeasuresWithHypervolumeRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIIRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>IBEARunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>MOCellHVRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAII45Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIIntegerRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>PESA2Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>RNSGAIIRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>GNSGAIIMeasuresWithChartsRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIMeasuresWithChartsRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>MOMBIRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>RandomSearchRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIStoppingByTimeRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIBigDataRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>SPEA2Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>MOCellRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>CellDERunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>RNSGAIIConstraintRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>ParallelPESA2Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>NSGAIIEbesRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>MOMBI2Runner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>PAESRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+        <AlgorithmRunner><name>WASFGAMeasuresRunner.java</name> <prop1></prop1> <prop2></prop2><prop3></prop3></AlgorithmRunner>
+
+
+    </Problem>
+
+
+
+
+</root>
+
