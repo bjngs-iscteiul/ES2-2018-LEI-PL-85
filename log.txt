@@ -1,0 +1,21 @@
+IN-> AntiSpamFilterProblem - 2018/04/23 01:28:34
+Numero de variaveis: 0 - 2018/04/23 01:28:34
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 01:28:34
+OUT-> AntiSpamFilterProblem - 2018/04/23 01:28:34
+IN-> AntiSpamFilterProblem() - 2018/04/23 01:28:34
+Rules size: 0 - 2018/04/23 01:28:34
+OUT-> AntiSpamFilterProblem() - 2018/04/23 01:28:34
+IN-> AntiSpamFilterProblem - 2018/04/23 01:28:42
+Numero de variaveis: 0 - 2018/04/23 01:28:42
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 01:28:42
+OUT-> AntiSpamFilterProblem - 2018/04/23 01:28:42
+IN-> AntiSpamFilterProblem() - 2018/04/23 01:28:42
+Rules size: 0 - 2018/04/23 01:28:42
+OUT-> AntiSpamFilterProblem() - 2018/04/23 01:28:42
+IN-> AntiSpamFilterProblem - 2018/04/23 01:28:43
+Numero de variaveis: 0 - 2018/04/23 01:28:43
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 01:28:43
+OUT-> AntiSpamFilterProblem - 2018/04/23 01:28:43
+IN-> AntiSpamFilterProblem() - 2018/04/23 01:28:43
+Rules size: 0 - 2018/04/23 01:28:43
+OUT-> AntiSpamFilterProblem() - 2018/04/23 01:28:43

@@ -25,7 +25,7 @@ import java.util.List;
  *
  *   @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class ABYSS_Runner extends AbstractAlgorithmRunner {
+public class ABYSS extends AbstractAlgorithmRunner {
   private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer>();
 
 

@@ -1,7 +1,7 @@
 package com.antispam.Services.JMetal;
 
 
-import org.uma.jmetal.runner.multiobjective.ABYSSRunner;
+import org.uma.jmetal.runner.multiobjective.ABYSS;
 
 public class AlgorithmExecutorESII {
 
@@ -18,7 +18,7 @@ public class AlgorithmExecutorESII {
             case"ABYSS":
                 args = new String[]{};
 
-                ABYSSRunner ABYSS = new ABYSSRunner();
+                ABYSS ABYSS = new ABYSS();
                 //pedir propriedades
                 //ABYSS.getHmapProperty();
                 //inserir propriedades
