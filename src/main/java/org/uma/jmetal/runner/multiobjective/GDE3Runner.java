@@ -13,6 +13,7 @@ import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,6 +22,15 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 public class GDE3Runner extends AbstractAlgorithmRunner {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public GDE3Runner() {
+    intHmapProperty.put("MaxEvaluations",25000);
+    intHmapProperty.put("PopulationSize",100);
+  }
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException Invoking command: java org.uma.jmetal.runner.multiobjective.GDE3Runner
@@ -55,8 +65,8 @@ public class GDE3Runner extends AbstractAlgorithmRunner {
     algorithm = new GDE3Builder(problem)
             .setCrossover(crossover)
             .setSelection(selection)
-            .setMaxEvaluations(25000)
-            .setPopulationSize(100)
+            .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
+            .setPopulationSize(intHmapProperty.get("PopulationSize"))
             .setSolutionSetEvaluator(new SequentialSolutionListEvaluator<>())
             .build();
 

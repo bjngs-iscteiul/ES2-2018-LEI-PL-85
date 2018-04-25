@@ -54,9 +54,9 @@ public class JMetalConnection {
         list[1] = "bananas";
         list[2] = "verde";
 
-       // new AlgorithmExecutorESII().testRun("ABYSS");
+       new AlgorithmExecutorESII().testRun("ABYSS");
 
-        FileSearch.getInstance().createXMLRunnerByProblem();
+        //FileSearch.getInstance().createXMLRunnerByProblem();
 
 
         return testelist;
@@ -118,5 +118,7 @@ public class JMetalConnection {
             readSpam(pathSpam);
         }
     }
+
+
 
 }

@@ -17,6 +17,7 @@ import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,6 +28,20 @@ import java.util.List;
  * evolutionary computation. London, England. July 2007.
  */
 public class MOCHCRunner extends AbstractAlgorithmRunner {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public MOCHCRunner() {
+    doubleHmapProperty.put("crossoverProbability",1.0);
+    doubleHmapProperty.put("mutationProbability",0.35);
+    doubleHmapProperty.put("InitialConvergenceCount",0.25);
+    doubleHmapProperty.put("PreservedPopulation",0.05);
+    intHmapProperty.put("solutionsToSelect",100);
+    intHmapProperty.put("ConvergenceValue",3);
+    intHmapProperty.put("PopulationSize",100);
+    intHmapProperty.put("MaxEvaluations",25000);
+  }
+
   public static void main(String[] args) throws Exception {
     CrossoverOperator<BinarySolution> crossoverOperator;
     MutationOperator<BinarySolution> mutationOperator;
@@ -48,17 +63,17 @@ public class MOCHCRunner extends AbstractAlgorithmRunner {
 
     problem = (BinaryProblem) ProblemUtils.<BinarySolution> loadProblem(problemName);
 
-    crossoverOperator = new HUXCrossover(1.0) ;
+    crossoverOperator = new HUXCrossover(doubleHmapProperty.get("crossoverProbability")) ;
     parentsSelection = new RandomSelection<BinarySolution>() ;
-    newGenerationSelection = new RankingAndCrowdingSelection<BinarySolution>(100) ;
-    mutationOperator = new BitFlipMutation(0.35) ;
+    newGenerationSelection = new RankingAndCrowdingSelection<BinarySolution>(intHmapProperty.get("solutionsToSelect")) ;
+    mutationOperator = new BitFlipMutation(doubleHmapProperty.get("mutationProbability")) ;
 
     algorithm = new MOCHCBuilder(problem)
-            .setInitialConvergenceCount(0.25)
-            .setConvergenceValue(3)
-            .setPreservedPopulation(0.05)
-            .setPopulationSize(100)
-            .setMaxEvaluations(25000)
+            .setInitialConvergenceCount(doubleHmapProperty.get("InitialConvergenceCount"))
+            .setConvergenceValue(intHmapProperty.get("ConvergenceValue"))
+            .setPreservedPopulation(doubleHmapProperty.get("PreservedPopulation"))
+            .setPopulationSize(intHmapProperty.get("PopulationSize"))
+            .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
             .setCrossover(crossoverOperator)
             .setNewGenerationSelection(newGenerationSelection)
             .setCataclysmicMutation(mutationOperator)

@@ -36,6 +36,7 @@
         <AlgorithmRunner>SteadyStateNSGAIIRunner.java</AlgorithmRunner>
         <AlgorithmRunner>MOEADDRunner.java</AlgorithmRunner>
         <AlgorithmRunner>OMOPSORunner.java</AlgorithmRunner>
+        <AlgorithmRunner>ABYSS.java</AlgorithmRunner>
         <AlgorithmRunner>ParallelNSGAIIRunner.java</AlgorithmRunner>
         <AlgorithmRunner>MOEADRunner.java</AlgorithmRunner>
         <AlgorithmRunner>SMPSOMeasuresRunner.java</AlgorithmRunner>
@@ -45,7 +46,6 @@
         <AlgorithmRunner>ParallelSMPSORunner.java</AlgorithmRunner>
         <AlgorithmRunner>SMPSOHvRunner.java</AlgorithmRunner>
         <AlgorithmRunner>DMOPSORunner.java</AlgorithmRunner>
-        <AlgorithmRunner>ABYSSRunner.java</AlgorithmRunner>
         <AlgorithmRunner>MOEADSTMRunner.java</AlgorithmRunner>
         <AlgorithmRunner>SMPSOHv2Runner.java</AlgorithmRunner>
         <AlgorithmRunner>GDE3Runner.java</AlgorithmRunner>

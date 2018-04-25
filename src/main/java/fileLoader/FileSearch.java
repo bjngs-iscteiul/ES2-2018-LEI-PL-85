@@ -52,7 +52,7 @@ public class FileSearch {
 
 
     //Read File to StringBuilder
-    private StringBuilder readFileToString(File file) throws IOException {
+    public StringBuilder readFileToString(File file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
         StringBuilder sb = new StringBuilder();
         try {
@@ -184,7 +184,7 @@ public class FileSearch {
 
             transformer.transform(source, result);
 
-            System.out.println("File saved!");
+            System.out.println("File RunnerProblemType saved!");
 
 
         } catch (ParserConfigurationException e) {
@@ -289,7 +289,7 @@ public class FileSearch {
             // Output to console for testing
             // StreamResult result = new StreamResult(System.out);
             transformer.transform(source, result);
-            System.out.println("File saved!");
+            System.out.println("File RunnerSOLUTIONType saved!");
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerConfigurationException e) {

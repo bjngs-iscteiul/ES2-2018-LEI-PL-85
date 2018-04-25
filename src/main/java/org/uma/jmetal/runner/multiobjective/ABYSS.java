@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.abyss.ABYSSBuilder;
 import org.uma.jmetal.problem.DoubleProblem;
@@ -25,9 +26,19 @@ import java.util.List;
  *
  *   @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class ABYSS extends AbstractAlgorithmRunner {
-  private static HashMap<String,Integer> hmapProperty = new HashMap<String,Integer>();
+public class ABYSS extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String,Integer> intHmapProperty = new HashMap<String,Integer>();
 
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return null;
+  }
+
+  public ABYSS() {
+    //FALTA DEFINIR VALORES DEFAULT
+    intHmapProperty.put("maxSize",0);
+    intHmapProperty.put("MaxEvaluations",0);
+  }
 
   /**
    * @param args Command line arguments.
@@ -54,10 +65,10 @@ public class ABYSS extends AbstractAlgorithmRunner {
 
     problem = (DoubleProblem) ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    Archive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(hmapProperty.get("maxSize")) ;
+    Archive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(intHmapProperty.get("maxSize")) ;
 
     algorithm = new ABYSSBuilder(problem, archive)
-        .setMaxEvaluations(hmapProperty.get("MaxEvaluations"))
+        .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
         .build();
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
@@ -74,12 +85,21 @@ public class ABYSS extends AbstractAlgorithmRunner {
     }
   }
 
-  public void setHmapProperty(Integer maxSize , Integer MaxEvaluations){
-    hmapProperty.clear();
-    hmapProperty.put("maxSize",maxSize);
-    hmapProperty.put("MaxEvaluations",MaxEvaluations);
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if(hmapProperty.size() == hmapProperty.size()){
+      this.intHmapProperty = hmapProperty;
+    }else{
+      throw new IllegalArgumentException;
+    }
   }
-  public HashMap<String,Integer> getHmapProperty(){
-    return this.hmapProperty;
+
+
+  //Hash not necessary
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {}
+
+  public HashMap<String,Integer> getIntHmapProperty(){
+    return this.intHmapProperty;
   }
 }

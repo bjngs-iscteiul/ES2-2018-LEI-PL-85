@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.gde3.GDE3;
 import org.uma.jmetal.algorithm.multiobjective.gde3.GDE3Builder;
@@ -13,6 +14,7 @@ import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +23,46 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class GDE3BigDataRunner {
+public class GDE3BigDataRunner implements jMetalAlgorithmDinamic {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public GDE3BigDataRunner() {
+    intHmapProperty.put("MaxEvaluations",250000);
+    intHmapProperty.put("PopulationSize",100);
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
+
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException
@@ -62,9 +103,11 @@ public class GDE3BigDataRunner {
     algorithm = new GDE3Builder(problem)
       .setCrossover(crossover)
       .setSelection(selection)
-      .setMaxEvaluations(250000)
-      .setPopulationSize(100)
+      .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
+      .setPopulationSize(intHmapProperty.get("PopulationSize"))
       .build() ;
+
+
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
       .execute() ;

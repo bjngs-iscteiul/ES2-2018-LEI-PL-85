@@ -15,6 +15,7 @@
         <AlgorithmRunner>NSGAIIIRunner.java</AlgorithmRunner>
         <AlgorithmRunner>IBEARunner.java</AlgorithmRunner>
         <AlgorithmRunner>MOCellHVRunner.java</AlgorithmRunner>
+        <AlgorithmRunner>ABYSS.java</AlgorithmRunner>
         <AlgorithmRunner>NSGAII45Runner.java</AlgorithmRunner>
         <AlgorithmRunner>ParallelNSGAIIRunner.java</AlgorithmRunner>
         <AlgorithmRunner>PESA2Runner.java</AlgorithmRunner>
@@ -36,7 +37,6 @@
         <AlgorithmRunner>SPEA2Runner.java</AlgorithmRunner>
         <AlgorithmRunner>MOCellRunner.java</AlgorithmRunner>
         <AlgorithmRunner>CellDERunner.java</AlgorithmRunner>
-        <AlgorithmRunner>ABYSSRunner.java</AlgorithmRunner>
         <AlgorithmRunner>MOEADSTMRunner.java</AlgorithmRunner>
         <AlgorithmRunner>RNSGAIIConstraintRunner.java</AlgorithmRunner>
         <AlgorithmRunner>SMPSOHv2Runner.java</AlgorithmRunner>
@@ -53,8 +53,7 @@
         <AlgorithmRunner>WASFGABinaryRunner.java</AlgorithmRunner>
         <AlgorithmRunner>NSGAIIBinaryRunner.java</AlgorithmRunner>
         <AlgorithmRunner>SPEA2BinaryRunner.java</AlgorithmRunner>
-        <AlgorithmRunner>MOCHC45Runner.java
-        </AlgorithmRunner>
+        <AlgorithmRunner>MOCHC45Runner.java</AlgorithmRunner>
     </BinarySolution>
     <IntegerSolution>
         <AlgorithmRunner>NSGAIIIntegerRunner.java</AlgorithmRunner>

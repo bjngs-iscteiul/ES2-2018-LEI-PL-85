@@ -19,3 +19,45 @@ OUT-> AntiSpamFilterProblem - 2018/04/23 01:28:43
 IN-> AntiSpamFilterProblem() - 2018/04/23 01:28:43
 Rules size: 0 - 2018/04/23 01:28:43
 OUT-> AntiSpamFilterProblem() - 2018/04/23 01:28:43
+IN-> AntiSpamFilterProblem - 2018/04/23 13:39:50
+Numero de variaveis: 0 - 2018/04/23 13:39:50
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:39:50
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:39:50
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:39:50
+Rules size: 0 - 2018/04/23 13:39:50
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:39:50
+IN-> AntiSpamFilterProblem - 2018/04/23 13:39:51
+Numero de variaveis: 0 - 2018/04/23 13:39:51
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:39:51
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:39:51
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:39:51
+Rules size: 0 - 2018/04/23 13:39:51
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:39:51
+IN-> AntiSpamFilterProblem - 2018/04/23 13:44:45
+Numero de variaveis: 0 - 2018/04/23 13:44:45
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:44:45
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:44:45
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:44:45
+Rules size: 0 - 2018/04/23 13:44:45
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:44:45
+IN-> AntiSpamFilterProblem - 2018/04/23 13:44:46
+Numero de variaveis: 0 - 2018/04/23 13:44:46
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:44:46
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:44:46
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:44:46
+Rules size: 0 - 2018/04/23 13:44:46
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:44:46
+IN-> AntiSpamFilterProblem - 2018/04/23 13:46:30
+Numero de variaveis: 0 - 2018/04/23 13:46:30
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:46:30
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:46:30
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:46:30
+Rules size: 0 - 2018/04/23 13:46:30
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:46:30
+IN-> AntiSpamFilterProblem - 2018/04/23 13:46:31
+Numero de variaveis: 0 - 2018/04/23 13:46:31
+Numero de variaveis: [getNumberOfVariables()]0 - 2018/04/23 13:46:31
+OUT-> AntiSpamFilterProblem - 2018/04/23 13:46:31
+IN-> AntiSpamFilterProblem() - 2018/04/23 13:46:31
+Rules size: 0 - 2018/04/23 13:46:31
+OUT-> AntiSpamFilterProblem() - 2018/04/23 13:46:31

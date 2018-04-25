@@ -15,6 +15,7 @@ import org.uma.jmetal.util.AlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,6 +24,19 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 public class IBEARunner extends AbstractAlgorithmRunner {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public IBEARunner() {
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    intHmapProperty.put("setArchiveSize",100);
+    intHmapProperty.put("setPopulationSize",100);
+    intHmapProperty.put("setMaxEvaluations",25000);
+  }
+
   /**
    * @param args Command line arguments.
    * @throws java.io.IOException
@@ -52,20 +66,25 @@ public class IBEARunner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability") ;
+
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex") ;
+
+
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex"); ;
+
+
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>() ;
 
     algorithm = new IBEABuilder(problem)
-      .setArchiveSize(100)
-      .setPopulationSize(100)
-      .setMaxEvaluations(25000)
+      .setArchiveSize(intHmapProperty.get("setArchiveSize"))
+      .setPopulationSize(intHmapProperty.get("setPopulationSize"))
+      .setMaxEvaluations(intHmapProperty.get("setMaxEvaluations"))
       .setCrossover(crossover)
       .setMutation(mutation)
       .setSelection(selection)

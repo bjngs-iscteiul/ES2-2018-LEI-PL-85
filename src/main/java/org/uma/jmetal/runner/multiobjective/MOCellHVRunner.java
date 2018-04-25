@@ -21,6 +21,7 @@ import org.uma.jmetal.util.archive.impl.HypervolumeArchive;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,6 +30,20 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 public class MOCellHVRunner extends AbstractAlgorithmRunner {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public MOCellHVRunner() {
+
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    intHmapProperty.put("maxSizw",100);
+    intHmapProperty.put("MaxEvaluations",25000);
+    intHmapProperty.put("PopulationSize",100);
+  }
+
   /**
    * @param args Command line arguments.
    * @throws JMetalException
@@ -37,6 +52,7 @@ public class MOCellHVRunner extends AbstractAlgorithmRunner {
     java org.uma.jmetal.runner.multiobjective.MOCellRunner problemName [referenceFront]
    */
   public static void main(String[] args) throws JMetalException, FileNotFoundException {
+
     Problem<DoubleSolution> problem;
     Algorithm<List<DoubleSolution>> algorithm;
     CrossoverOperator<DoubleSolution> crossover;
@@ -57,25 +73,37 @@ public class MOCellHVRunner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability");
+
+
+
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex"); ;
+
+
+
+
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex"); ;
+
+
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>(new RankingAndCrowdingDistanceComparator<DoubleSolution>());
 
     BoundedArchive<DoubleSolution> archive =
-        new HypervolumeArchive<DoubleSolution>(100, new PISAHypervolume<DoubleSolution>()) ;
+        new HypervolumeArchive<DoubleSolution>(intHmapProperty.get("maxSizw");, new PISAHypervolume<DoubleSolution>()) ;
+
+
 
     algorithm = new MOCellBuilder<DoubleSolution>(problem, crossover, mutation)
         .setSelectionOperator(selection)
-        .setMaxEvaluations(25000)
-        .setPopulationSize(100)
+        .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
+        .setPopulationSize(intHmapProperty.get("PopulationSize"))
         .setArchive(archive)
         .build() ;
+
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
         .execute() ;
