@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class GDE3BigDataRunner implements jMetalAlgorithmDinamic {
+public class GDE3BigDataRunner implements jMetalAlgorithmDinamic implements jMetalAlgorithmDinamic {
 
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();

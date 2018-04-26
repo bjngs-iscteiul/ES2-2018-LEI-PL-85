@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIMeasures;
@@ -23,12 +24,53 @@ import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.front.imp.ArrayFront;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Class to configure and run the NSGA-II algorithm (variant with measures)
  */
-public class NSGAIIMeasuresWithHypervolumeRunner extends AbstractAlgorithmRunner {
+public class NSGAIIMeasuresWithHypervolumeRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public NSGAIIMeasuresWithHypervolumeRunner(){
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+
+    intHmapProperty.put("maxEvaluations",25000);
+    intHmapProperty.put("populationSize",100);
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException
@@ -55,18 +97,18 @@ public class NSGAIIMeasuresWithHypervolumeRunner extends AbstractAlgorithmRunner
 
     problem = ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability");
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex");
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex");
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>(new RankingAndCrowdingDistanceComparator<DoubleSolution>());
 
-    int maxEvaluations = 25000 ;
-    int populationSize = 100 ;
+    int maxEvaluations = intHmapProperty.get("maxEvaluations") ;
+    int populationSize = intHmapProperty.get("populationSize") ;
 
     algorithm = new NSGAIIBuilder<DoubleSolution>(problem, crossover, mutation)
         .setSelectionOperator(selection)

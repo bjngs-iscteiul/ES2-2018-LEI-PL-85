@@ -13,6 +13,7 @@
 
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.rnsgaii.RNSGAIIBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -24,15 +25,12 @@ import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.problem.multiobjective.Srinivas;
 import org.uma.jmetal.solution.DoubleSolution;
-import org.uma.jmetal.util.AbstractAlgorithmRunner;
-import org.uma.jmetal.util.AlgorithmRunner;
-import org.uma.jmetal.util.JMetalException;
-import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.ProblemUtils;
+import org.uma.jmetal.util.*;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,7 +39,52 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * @author Cristobal Barba <cbarba@lcc.uma.es>
  */
-public class RNSGAIIConstraintRunner extends AbstractAlgorithmRunner {
+public class RNSGAIIConstraintRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public RNSGAIIConstraintRunner(){
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    doubleHmapProperty.put("epsilon",0.001);
+
+    intHmapProperty.put("maxEvaluations",25000);
+    intHmapProperty.put("populationSize",100);
+
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
+
+
   /**
    * @param args Command line arguments.
    * @throws JMetalException
@@ -70,12 +113,12 @@ public class RNSGAIIConstraintRunner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability");
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex");
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex");
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>(
@@ -89,12 +132,12 @@ public class RNSGAIIConstraintRunner extends AbstractAlgorithmRunner {
     referencePoint.add(150.0);
     referencePoint.add(-50.0);
 
-    double epsilon= 0.001;
+    double epsilon= doubleHmapProperty.get("epsilon");
 
     algorithm = new RNSGAIIBuilder<DoubleSolution>(problem, crossover, mutation, referencePoint,epsilon)
         .setSelectionOperator(selection)
-        .setMaxEvaluations(25000)
-        .setPopulationSize(100)
+        .setMaxEvaluations(intHmapProperty.get("maxEvaluations"))
+        .setPopulationSize(intHmapProperty.get("maxEvaluations"))
         .build() ;
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)

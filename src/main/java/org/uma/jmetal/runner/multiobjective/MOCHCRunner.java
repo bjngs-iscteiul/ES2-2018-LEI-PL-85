@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.mochc.MOCHCBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -27,7 +28,7 @@ import java.util.List;
  * GECCO '07: Proceedings of the 9th annual conference on Genetic and
  * evolutionary computation. London, England. July 2007.
  */
-public class MOCHCRunner extends AbstractAlgorithmRunner {
+public class MOCHCRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
 
@@ -40,6 +41,35 @@ public class MOCHCRunner extends AbstractAlgorithmRunner {
     intHmapProperty.put("ConvergenceValue",3);
     intHmapProperty.put("PopulationSize",100);
     intHmapProperty.put("MaxEvaluations",25000);
+  }
+
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
   }
 
   public static void main(String[] args) throws Exception {

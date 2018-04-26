@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIMeasures;
@@ -23,13 +24,60 @@ import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Class to configure and run the NSGA-II algorithm (variant with measures)
  */
-public class NSGAIIMeasuresRunner extends AbstractAlgorithmRunner {
+public class NSGAIIMeasuresRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public NSGAIIMeasuresRunner(){
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+
+    intHmapProperty.put("maxEvaluations",25000);
+    intHmapProperty.put("populationSize",100);
+    intHmapProperty.put("timeout",5);
+
+
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
+
+
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException
@@ -58,19 +106,19 @@ public class NSGAIIMeasuresRunner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability");
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex");
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex");
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>(
             new RankingAndCrowdingDistanceComparator<DoubleSolution>());
 
-    int maxEvaluations = 25000 ;
-    int populationSize = 100 ;
+    int maxEvaluations = intHmapProperty.get("maxEvaluations") ;
+    int populationSize = intHmapProperty.get("populationSize") ;
 
     algorithm = new NSGAIIBuilder<DoubleSolution>(problem, crossover, mutation)
         .setSelectionOperator(selection)
@@ -104,7 +152,7 @@ public class NSGAIIMeasuresRunner extends AbstractAlgorithmRunner {
     /* Using the measures */
     int i = 0 ;
     while(currentEvalution.get() < maxEvaluations) {
-      TimeUnit.SECONDS.sleep(5);
+      TimeUnit.SECONDS.sleep(intHmapProperty.get("timeout"));
       System.out.println("Evaluations (" + i + ")                     : " + currentEvalution.get()) ;
       System.out.println("Computing time (" + i + ")                  : " + currentComputingTime.get()) ;
       System.out.println("Number of Nondominated solutions (" + i + "): " + nonDominatedSolutions.get()) ;

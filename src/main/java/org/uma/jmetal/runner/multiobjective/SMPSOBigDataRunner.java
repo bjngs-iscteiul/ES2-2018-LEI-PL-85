@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.smpso.SMPSO;
 import org.uma.jmetal.algorithm.multiobjective.smpso.SMPSOBuilder;
@@ -17,6 +18,7 @@ import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,7 +28,47 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 
-public class SMPSOBigDataRunner extends AbstractAlgorithmRunner {
+public class SMPSOBigDataRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public SMPSOBigDataRunner(){
+
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    intHmapProperty.put("CrowdingDistanceArchive_maxSize",20);
+    intHmapProperty.put("maxEvaluations",250);
+    intHmapProperty.put("populationSize",100);
+
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
   /**
    * @param args Command line arguments. The first (optional) argument specifies
    *             the problem to solve.
@@ -51,16 +93,16 @@ public class SMPSOBigDataRunner extends AbstractAlgorithmRunner {
 
     problem = new BigOpt2015(instanceName) ;
 
-    BoundedArchive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(20) ;
+    BoundedArchive<DoubleSolution> archive = new CrowdingDistanceArchive<DoubleSolution>(intHmapProperty.get("CrowdingDistanceArchive_maxSize")) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex");
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     algorithm = new SMPSOBuilder(problem, archive)
             .setMutation(mutation)
-            .setMaxIterations(250)
-            .setSwarmSize(20)
+            .setMaxIterations(intHmapProperty.get("maxEvaluations"))
+            .setSwarmSize(intHmapProperty.get("populationSize"))
      //       .setRandomGenerator(new MersenneTwisterGenerator())
             .build();
 

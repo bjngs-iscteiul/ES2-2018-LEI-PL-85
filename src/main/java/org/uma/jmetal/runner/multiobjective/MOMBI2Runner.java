@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.mombi.MOMBI2;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -10,15 +11,12 @@ import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
 import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.DoubleSolution;
-import org.uma.jmetal.util.AbstractAlgorithmRunner;
-import org.uma.jmetal.util.AlgorithmRunner;
-import org.uma.jmetal.util.JMetalException;
-import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.ProblemUtils;
+import org.uma.jmetal.util.*;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,7 +29,45 @@ import java.util.List;
  * and Evolutionary Computation Conference. Pages 679-686
  * DOI: 10.1145/2739480.2754776
  */
-public class MOMBI2Runner extends AbstractAlgorithmRunner {
+public class MOMBI2Runner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public MOMBI2Runner(){
+    doubleHmapProperty.put("crossoverProbability",0.9);
+    doubleHmapProperty.put("crossoverDistributionIndex",20.0);
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    intHmapProperty.put("maxIterations",400);
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
   /**
    * @param args Command line arguments.
    * @throws JMetalException
@@ -60,17 +96,21 @@ public class MOMBI2Runner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.<DoubleSolution> loadProblem(problemName);
 
-    double crossoverProbability = 0.9 ;
-    double crossoverDistributionIndex = 20.0 ;
+    double crossoverProbability = doubleHmapProperty.get("crossoverProbability") ;
+    double crossoverDistributionIndex = doubleHmapProperty.get("crossoverDistributionIndex");
     crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-    double mutationDistributionIndex = 20.0 ;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex") ;
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex) ;
 
     selection = new BinaryTournamentSelection<DoubleSolution>(new RankingAndCrowdingDistanceComparator<DoubleSolution>());
 
-    algorithm = new MOMBI2<>(problem,400,crossover,mutation,selection,new SequentialSolutionListEvaluator<DoubleSolution>(),
+    algorithm = new MOMBI2<>(problem,intHmapProperty.get("maxIterations"),
+            crossover,
+            mutation,
+            selection,
+            new SequentialSolutionListEvaluator<DoubleSolution>(),
     		"mombi2-weights/weight/weight_03D_12.sld");
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
         .execute() ;

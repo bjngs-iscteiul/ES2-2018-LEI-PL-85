@@ -1,18 +1,16 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.paes.PAESBuilder;
 import org.uma.jmetal.operator.MutationOperator;
 import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.DoubleSolution;
-import org.uma.jmetal.util.AbstractAlgorithmRunner;
-import org.uma.jmetal.util.AlgorithmRunner;
-import org.uma.jmetal.util.JMetalException;
-import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.ProblemUtils;
+import org.uma.jmetal.util.*;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +19,49 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 
-public class PAESRunner extends AbstractAlgorithmRunner {
+public class PAESRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+  public PAESRunner() {
+    doubleHmapProperty.put("mutationProbability", 1.0);
+    doubleHmapProperty.put("distributionIndex", 20.0);
+
+    intHmapProperty.put("MaxEvaluations", 25000);
+    intHmapProperty.put("ArchiveSize", 100);
+    intHmapProperty.put("BiSections", 5);
+  }
+
+
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException
@@ -48,13 +88,13 @@ public class PAESRunner extends AbstractAlgorithmRunner {
 
     problem = ProblemUtils.loadProblem(problemName);
 
-    mutation = new PolynomialMutation(1.0 / problem.getNumberOfVariables(), 20.0) ;
+    mutation = new PolynomialMutation(doubleHmapProperty.get("mutationProbability")/ problem.getNumberOfVariables(), doubleHmapProperty.get("distributionIndex")) ;
 
     algorithm = new PAESBuilder<DoubleSolution>(problem)
             .setMutationOperator(mutation)
-            .setMaxEvaluations(25000)
-            .setArchiveSize(100)
-            .setBiSections(5)
+            .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
+            .setArchiveSize(intHmapProperty.get("ArchiveSize"))
+            .setBiSections(intHmapProperty.get("BiSections"))
             .build() ;
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)

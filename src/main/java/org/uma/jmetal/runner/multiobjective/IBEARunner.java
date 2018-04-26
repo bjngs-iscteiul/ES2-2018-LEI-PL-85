@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.multiobjective.ibea.IBEA;
 import org.uma.jmetal.algorithm.multiobjective.ibea.IBEABuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -23,7 +24,7 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class IBEARunner extends AbstractAlgorithmRunner {
+public class IBEARunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
 
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
@@ -35,6 +36,34 @@ public class IBEARunner extends AbstractAlgorithmRunner {
     intHmapProperty.put("setArchiveSize",100);
     intHmapProperty.put("setPopulationSize",100);
     intHmapProperty.put("setMaxEvaluations",25000);
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
   }
 
   /**

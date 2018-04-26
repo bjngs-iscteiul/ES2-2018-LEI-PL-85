@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.omopso.OMOPSOBuilder;
 import org.uma.jmetal.operator.impl.mutation.NonUniformMutation;
@@ -12,6 +13,7 @@ import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,7 +22,48 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 
-public class OMOPSORunner extends AbstractAlgorithmRunner {
+public class OMOPSORunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+
+  public OMOPSORunner(){
+    doubleHmapProperty.put("Uniform_Mutation_perturbation",0.5);
+    doubleHmapProperty.put("Non_Uniform_Mutation_perturbation",0.5);
+
+    intHmapProperty.put("MaxIterations",250);
+    intHmapProperty.put("SwarmSize",100);
+    intHmapProperty.put("Non_Uniform_Mutation_MaxIterations",250);
+    }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
   /**
    * @param args Command line arguments.
    * @throws org.uma.jmetal.util.JMetalException
@@ -51,10 +94,10 @@ public class OMOPSORunner extends AbstractAlgorithmRunner {
     double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
 
     algorithm = new OMOPSOBuilder(problem, new SequentialSolutionListEvaluator<>())
-        .setMaxIterations(250)
-        .setSwarmSize(100)
-        .setUniformMutation(new UniformMutation(mutationProbability, 0.5))
-        .setNonUniformMutation(new NonUniformMutation(mutationProbability, 0.5, 250))
+        .setMaxIterations(intHmapProperty.get("MaxIterations"))
+        .setSwarmSize(intHmapProperty.get("SwarmSize"))
+        .setUniformMutation(new UniformMutation(mutationProbability, doubleHmapProperty.get("Uniform_Mutation_perturbation")))
+        .setNonUniformMutation(new NonUniformMutation(mutationProbability, doubleHmapProperty.get("Non_Uniform_Mutation_perturbation"), intHmapProperty.get("Non_Uniform_Mutation_MaxIterations")))
         .build();
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)

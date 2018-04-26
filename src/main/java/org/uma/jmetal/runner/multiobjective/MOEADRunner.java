@@ -1,5 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
+import interfaces.jMetalAlgorithmDinamic;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.moead.AbstractMOEAD;
 import org.uma.jmetal.algorithm.multiobjective.moead.MOEADBuilder;
@@ -14,6 +15,7 @@ import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +23,51 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class MOEADRunner extends AbstractAlgorithmRunner {
+public class MOEADRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
+  private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+
+
+  public MOEADRunner(){
+    doubleHmapProperty.put("mutationDistributionIndex",20.0);
+    doubleHmapProperty.put("NeighborhoodSelectionProbability",0.9);
+    intHmapProperty.put("MaxEvaluations",150000);
+    intHmapProperty.put("PopulationSize",100);
+    intHmapProperty.put("ResultPopulationSize",100);
+    intHmapProperty.put("MaximumNumberOfReplacedSolutions",2);
+    intHmapProperty.put("NeighborSize",20);
+  }
+
+  @Override
+  public void setDoubleHmapProperty(HashMap<String, Double> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.doubleHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public void setIntHmapProperty(HashMap<String, Integer> hmapProperty) {
+    if (hmapProperty.size() == hmapProperty.size()) {
+      this.intHmapProperty = hmapProperty;
+    } else {
+      throw new IllegalArgumentException;
+    }
+  }
+
+  @Override
+  public HashMap<String, Integer> getIntHmapProperty() {
+    return intHmapProperty;
+  }
+
+  @Override
+  public HashMap<String, Double> getDoubleHmapProperty() {
+    return doubleHmapProperty;
+  }
+
+
   /**
    * @param args Command line arguments.
    * @throws SecurityException
@@ -53,18 +99,20 @@ public class MOEADRunner extends AbstractAlgorithmRunner {
     crossover = new DifferentialEvolutionCrossover(cr, f, "rand/1/bin");
 
     double mutationProbability = 1.0 / problem.getNumberOfVariables();
-    double mutationDistributionIndex = 20.0;
+    double mutationDistributionIndex = doubleHmapProperty.get("mutationDistributionIndex");
+
+
     mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex);
 
     algorithm = new MOEADBuilder(problem, MOEADBuilder.Variant.MOEAD)
             .setCrossover(crossover)
             .setMutation(mutation)
-            .setMaxEvaluations(150000)
-            .setPopulationSize(100)
-            .setResultPopulationSize(100)
+            .setMaxEvaluations(intHmapProperty.get("MaxEvaluations"))
+            .setPopulationSize(intHmapProperty.get("PopulationSize"))
+            .setResultPopulationSize(intHmapProperty.get("ResultPopulationSize"))
             .setNeighborhoodSelectionProbability(0.9)
-            .setMaximumNumberOfReplacedSolutions(2)
-            .setNeighborSize(20)
+            .setMaximumNumberOfReplacedSolutions(intHmapProperty.get("MaximumNumberOfReplacedSolutions"))
+            .setNeighborSize(intHmapProperty.get("NeighborSize"))
             .setFunctionType(AbstractMOEAD.FunctionType.TCHE)
             .setDataDirectory("MOEAD_Weights")
             .build() ;
