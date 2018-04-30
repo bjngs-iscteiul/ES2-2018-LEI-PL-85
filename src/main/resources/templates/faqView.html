@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../static/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="../static/css/faqViewStyle.css" />
+	<link th:href="@{../static/css/main.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{../static/css/faqViewStyle.css}" rel="stylesheet" type="text/css"/>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 <body>
@@ -67,10 +67,9 @@
 
 <footer id="bottomFooter">
 </footer>
-<script src="../scripts/jquery-3.2.1.min.js"></script>
-<script src="../scripts/faqViewStyle.js"></script>
-<script src="../scripts/modernizr.js"></script>
-<script src="../scripts/addMainComponents.js"></script>
-
+<script th:src="@{../scripts/jquery-3.2.1.min.js}"></script>
+<script th:src="@{../scripts/addMainComponents.js}"></script>
+<script th:src="@{../scripts/faqViewStyle.js}"></script>
+<script th:src="@{../scripts/modernizr.js}"></script>
 </body>
 </html>

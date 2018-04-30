@@ -1,4 +1,4 @@
-package com.antispam.controllers;
+package com.antispam.Controllers;
 
 import com.antispam.Services.JMetal.JMetalConnection;
 import org.springframework.web.bind.annotation.GetMapping;

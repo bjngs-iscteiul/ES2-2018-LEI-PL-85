@@ -1,14 +1,10 @@
-
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spring Boot Thymeleaf Hello World Example</title>
     <meta http-equiv="Content-Type"  name="viewport" content="width=device-width, initial-scale=1.0, text/html, charset=UTF-8"/>
-    <!-- <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />-->
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+    <link th:href="@{../static/css/main.css}" rel="stylesheet" type="text/css"/>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 <header id="topHeader">
@@ -43,9 +39,8 @@
 
 <footer id="bottomFooter">
 </footer>
-
-<script src="../scripts/jquery-3.2.1.min.js"></script>
-<script src="../scripts/addMainComponents.js"></script>
+<script th:src="@{../scripts/jquery-3.2.1.min.js}"></script>
+<script th:src="@{../scripts/addMainComponents.js}"></script>
 </body>
 </html>
 

@@ -1,17 +1,19 @@
-package com.antispam.controllers;
-
+package com.antispam.Controllers;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- *
- */
+
 @Controller
-@RequestMapping({"/","/home"})
 public class HomeController {
-    @RequestMapping(method = RequestMethod.GET)
-    public String showHomePage() {
-        return "index";
-    }
+    @GetMapping({"/","/home"})
+    public String test() { return "index"; }
+
+    @GetMapping({"/problemView"})
+    public String test2() { return "problemView"; }
+
+    @GetMapping({"/faqView"})
+    public String test3() { return "faqView"; }
+
+    @GetMapping({"/supportView"})
+    public String test4() { return "supportView"; }
 }
