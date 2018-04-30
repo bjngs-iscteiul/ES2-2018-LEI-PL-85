@@ -9,13 +9,19 @@
 <body>
 <header id="topHeader">
 </header>
+<br>
+<br>
 <div class="container-contact2">
     <div class="wrap-contact2">
         <form class="contact2-form validate-form">
             <span class="contact2-form-title">Problem Form</span>
-            <div align="right">
+            <div>
                 <div class="upload-btn-wrapper">
-                    <button class="btn">Upload file</button>
+                    <button class="btn">Upload xml file</button>
+                    <input align="left" type="file" name="myfile" />
+                </div>
+                <div class="upload-btn-wrapper">
+                    <button class="btn">Upload jar file</button>
                     <input align="right" type="file" name="myfile" />
                 </div>
             </div>
@@ -44,12 +50,18 @@
                 <input class="input2" type="number" name="variablesNumber">
                 <span class="focus-input2" data-placeholder="VARIABLES NUMBER"></span>
             </div>
+            <div class="wrap-input2 validate-input" data-validate="Number is required">
+                <input type="checkbox" name="algorithm mode" value="Manual">
+                <input type="checkbox" name="algorithm mode" value="Automatic">
+                <input type="checkbox" name="algorithm mode" value="Mix">
+                <span class="focus-input2" data-placeholder="CHOICE OF ALGORITHM MODE"></span>
+            </div>
 
             <div class="container-contact2-form-btn">
                 <div class="wrap-contact2-form-btn">
                     <div class="contact2-form-bgbtn"></div>
                     <button class="contact2-form-btn">
-                        Submit your Problem
+                        Submit your Problem to Optimization
                     </button>
                 </div>
             </div>
