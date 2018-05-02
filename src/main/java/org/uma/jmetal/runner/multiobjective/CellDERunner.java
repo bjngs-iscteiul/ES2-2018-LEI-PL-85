@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.cellde.CellDE45;
 import org.uma.jmetal.operator.SelectionOperator;
@@ -23,12 +23,13 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class CellDERunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class CellDERunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
     private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
+    private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
 
     @Override
     public HashMap<String, Double> getDoubleHmapProperty() {
-        return null;
+        return doubleHmapProperty;
     }
 
     public CellDERunner() {

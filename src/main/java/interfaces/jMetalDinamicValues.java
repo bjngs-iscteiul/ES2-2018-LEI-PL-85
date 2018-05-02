@@ -2,7 +2,7 @@ package interfaces;
 
 import java.util.HashMap;
 
-public interface jMetalAlgorithmDinamic {
+public interface jMetalDinamicValues {
 
 
     /**

@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.mombi.MOMBI2;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -29,7 +29,7 @@ import java.util.List;
  * and Evolutionary Computation Conference. Pages 679-686
  * DOI: 10.1145/2739480.2754776
  */
-public class MOMBI2Runner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class MOMBI2Runner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
 

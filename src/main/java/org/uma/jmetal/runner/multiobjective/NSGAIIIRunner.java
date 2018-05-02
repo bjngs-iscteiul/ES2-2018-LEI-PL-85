@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaiii.NSGAIIIBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Class to configure and run the NSGA-III algorithm
  */
-public class NSGAIIIRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class NSGAIIIRunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
     private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
     private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
 

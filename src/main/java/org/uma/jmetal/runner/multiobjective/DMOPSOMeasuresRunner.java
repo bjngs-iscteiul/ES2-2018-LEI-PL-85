@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 import org.uma.jmetal.algorithm.multiobjective.dmopso.DMOPSO.FunctionType;
 import org.uma.jmetal.algorithm.multiobjective.dmopso.DMOPSOMeasures;
@@ -26,7 +26,7 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 
-public class DMOPSOMeasuresRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class DMOPSOMeasuresRunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
     private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
     private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
 

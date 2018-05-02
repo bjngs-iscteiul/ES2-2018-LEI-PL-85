@@ -13,7 +13,7 @@
 
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.rnsgaii.RNSGAIIBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -42,7 +42,7 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * @author Cristobal Barba <cbarba@lcc.uma.es>
  */
-public class RNSGAIIRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class RNSGAIIRunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
 

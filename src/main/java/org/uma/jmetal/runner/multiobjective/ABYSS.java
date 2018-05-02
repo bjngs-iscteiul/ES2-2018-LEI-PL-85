@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.abyss.ABYSSBuilder;
 import org.uma.jmetal.problem.DoubleProblem;
@@ -26,12 +26,13 @@ import java.util.List;
  *
  *   @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class ABYSS extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class ABYSS extends AbstractAlgorithmRunner implements jMetalDinamicValues {
   private static HashMap<String,Integer> intHmapProperty = new HashMap<String,Integer>();
+  private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
 
   @Override
   public HashMap<String, Double> getDoubleHmapProperty() {
-    return null;
+    return doubleHmapProperty;
   }
 
   public ABYSS() {
@@ -62,6 +63,9 @@ public class ABYSS extends AbstractAlgorithmRunner implements jMetalAlgorithmDin
       problemName = "org.uma.jmetal.problem.multiobjective.zdt.ZDT1";
       referenceParetoFront = "jmetal-problem/src/test/resources/pareto_fronts/ZDT1.pf" ;
     }
+
+    //CRIAR UMA NOVA INSTANCIA DE DOUBLE PROBLEM E USAR COMO SET DA VARIAVEL PROBLEM
+    //DOUBLE PROBLEM É UMA CLASS CUSTOMIZADA
 
     problem = (DoubleProblem) ProblemUtils.<DoubleSolution> loadProblem(problemName);
 

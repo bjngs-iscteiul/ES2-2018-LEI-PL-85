@@ -1,6 +1,6 @@
 package org.uma.jmetal.runner.multiobjective;
 
-import interfaces.jMetalAlgorithmDinamic;
+import interfaces.jMetalDinamicValues;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.randomsearch.RandomSearchBuilder;
 import org.uma.jmetal.problem.Problem;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 
-public class RandomSearchRunner extends AbstractAlgorithmRunner implements jMetalAlgorithmDinamic {
+public class RandomSearchRunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
   /**
    * @param args Command line arguments.
    * @throws SecurityException
