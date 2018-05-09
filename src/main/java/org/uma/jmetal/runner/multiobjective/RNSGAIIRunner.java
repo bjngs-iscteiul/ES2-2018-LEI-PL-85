@@ -62,7 +62,7 @@ public class RNSGAIIRunner extends AbstractAlgorithmRunner implements jMetalDina
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -71,7 +71,7 @@ public class RNSGAIIRunner extends AbstractAlgorithmRunner implements jMetalDina
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

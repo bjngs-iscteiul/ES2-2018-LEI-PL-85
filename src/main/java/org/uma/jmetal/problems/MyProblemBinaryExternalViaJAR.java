@@ -28,7 +28,7 @@ public class MyProblemBinaryExternalViaJAR extends AbstractBinaryProblem impleme
 		if (hmapProperty.size() == hmapProperty.size()) {
 			this.doubleHmapProperty = hmapProperty;
 		} else {
-			throw new IllegalArgumentException;
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -37,7 +37,7 @@ public class MyProblemBinaryExternalViaJAR extends AbstractBinaryProblem impleme
 		if (hmapProperty.size() == hmapProperty.size()) {
 			this.intHmapProperty = hmapProperty;
 		} else {
-			throw new IllegalArgumentException;
+			throw new IllegalArgumentException();
 		}
 	}
 

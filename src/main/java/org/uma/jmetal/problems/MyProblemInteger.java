@@ -56,7 +56,7 @@ public class MyProblemInteger extends AbstractIntegerProblem implements jMetalDi
 
 	  public void start (Integer numberOfVariables) throws JMetalException {
 	    setNumberOfVariables(numberOfVariables);
-	    setNumberOfObjectives(intHmapProperty.get("numberOfObjectives"););
+	    setNumberOfObjectives(intHmapProperty.get("numberOfObjectives"));
 	    setName("MyProblemInteger");
 
 	    List<Integer> lowerLimit = new ArrayList<>(getNumberOfVariables()) ;

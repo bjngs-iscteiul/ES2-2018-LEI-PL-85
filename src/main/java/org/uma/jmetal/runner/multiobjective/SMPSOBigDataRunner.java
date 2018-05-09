@@ -46,7 +46,7 @@ public class SMPSOBigDataRunner extends AbstractAlgorithmRunner implements jMeta
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -55,7 +55,7 @@ public class SMPSOBigDataRunner extends AbstractAlgorithmRunner implements jMeta
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

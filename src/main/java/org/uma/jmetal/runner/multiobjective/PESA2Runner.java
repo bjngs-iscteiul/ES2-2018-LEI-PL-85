@@ -42,7 +42,7 @@ public class PESA2Runner extends AbstractAlgorithmRunner implements jMetalDinami
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -51,7 +51,7 @@ public class PESA2Runner extends AbstractAlgorithmRunner implements jMetalDinami
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

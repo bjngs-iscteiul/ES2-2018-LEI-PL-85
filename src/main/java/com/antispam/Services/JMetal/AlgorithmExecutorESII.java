@@ -24,12 +24,12 @@ public class AlgorithmExecutorESII {
                 ABYSS ABYSS = new ABYSS();
                 //pedir propriedades
                 System.out.println("É necessario inserir as seguintes propriedades: ");
-                Iterator it = ABYSS.getHmapProperty().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry pair = (Map.Entry)it.next();
-                    System.out.println(pair.getKey());
-                    it.remove(); // avoids a ConcurrentModificationException
-                }
+                //Iterator it = ABYSS.getHmapProperty().entrySet().iterator();
+//                while (it.hasnext()) {
+//                    map.entry pair = (map.entry)it.next();
+//                    system.out.println(pair.getkey());
+//                    it.remove(); // avoids a concurrentmodificationexception
+//                }
 
 
                 //ABYSS.getHmapProperty();

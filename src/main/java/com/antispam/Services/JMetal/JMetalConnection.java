@@ -21,13 +21,13 @@ public class JMetalConnection {
         File[] paths;
 
         try {
-            folder = new File("/Users/pedro/Documents/EngenhariaInformatica/ESII/Repositiorio/ES2-2018-LEI-PL-85_/src/main/resources/jMetalSourceCode/jmetal-algorithm/src/main/java/org/uma/jmetal/algorithm/multiobjective");
+            folder = new File("src/main/java/org/uma/jmetal/runner/multiobjective");
             paths = folder.listFiles();
             returnList = new String[paths.length];
 
             int i = 0;
             for (File file : paths) {
-                returnList[i] = file.getName();
+                returnList[i] = file.getName().replace(".java","");
 
                 if (file.isDirectory()) {
                     returnList[i] = file.getName();

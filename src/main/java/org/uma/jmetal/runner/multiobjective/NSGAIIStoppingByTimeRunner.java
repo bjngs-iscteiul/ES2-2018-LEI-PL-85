@@ -43,7 +43,7 @@ public class NSGAIIStoppingByTimeRunner extends AbstractAlgorithmRunner implemen
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -52,7 +52,7 @@ public class NSGAIIStoppingByTimeRunner extends AbstractAlgorithmRunner implemen
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

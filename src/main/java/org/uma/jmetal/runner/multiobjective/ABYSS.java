@@ -94,7 +94,7 @@ public class ABYSS extends AbstractAlgorithmRunner implements jMetalDinamicValue
     if(hmapProperty.size() == hmapProperty.size()){
       this.intHmapProperty = hmapProperty;
     }else{
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

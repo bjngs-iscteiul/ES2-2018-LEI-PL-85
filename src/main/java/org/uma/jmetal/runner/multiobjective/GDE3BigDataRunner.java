@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-public class GDE3BigDataRunner implements jMetalDinamicValues implements jMetalAlgorithmDinamic {
+public class GDE3BigDataRunner implements jMetalDinamicValues {
 
   private static HashMap<String, Double> doubleHmapProperty = new HashMap<String, Double>();
   private static HashMap<String, Integer> intHmapProperty = new HashMap<String, Integer>();
@@ -38,7 +38,7 @@ public class GDE3BigDataRunner implements jMetalDinamicValues implements jMetalA
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -47,7 +47,7 @@ public class GDE3BigDataRunner implements jMetalDinamicValues implements jMetalA
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

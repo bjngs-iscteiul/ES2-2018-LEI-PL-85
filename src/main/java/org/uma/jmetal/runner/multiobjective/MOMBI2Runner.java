@@ -45,7 +45,7 @@ public class MOMBI2Runner extends AbstractAlgorithmRunner implements jMetalDinam
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -54,7 +54,7 @@ public class MOMBI2Runner extends AbstractAlgorithmRunner implements jMetalDinam
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

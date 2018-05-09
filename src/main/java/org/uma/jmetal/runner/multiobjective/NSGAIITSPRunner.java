@@ -51,7 +51,7 @@ public class NSGAIITSPRunner extends AbstractAlgorithmRunner implements jMetalDi
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -60,7 +60,7 @@ public class NSGAIITSPRunner extends AbstractAlgorithmRunner implements jMetalDi
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 

@@ -1,3 +1,4 @@
+/*
 package org.uma.jmetal.runner.multiobjective;
 
 import interfaces.jMetalDinamicValues;
@@ -10,19 +11,23 @@ import org.uma.jmetal.util.*;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+*/
 /**
  * Class for configuring and running the random search algorithm
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
- */
+ *//*
 
-public class RandomSearchRunner extends AbstractAlgorithmRunner implements jMetalDinamicValues {
-  /**
+
+public class RandomSearchRunner extends AbstractAlgorithmRunner{
+  */
+/**
    * @param args Command line arguments.
    * @throws SecurityException
    * Invoking command:
   java org.uma.jmetal.runner.multiobjective.RandomSearchRunner problemName [referenceFront]
-   */
+   *//*
+
   public static void main(String[] args) throws JMetalException, FileNotFoundException {
     Problem<DoubleSolution> problem;
     Algorithm<List<DoubleSolution>> algorithm;
@@ -60,3 +65,4 @@ public class RandomSearchRunner extends AbstractAlgorithmRunner implements jMeta
     }
   }
 }
+*/

@@ -46,7 +46,7 @@ public class NSGAIIIntegerRunner extends AbstractAlgorithmRunner implements jMet
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -55,7 +55,7 @@ public class NSGAIIIntegerRunner extends AbstractAlgorithmRunner implements jMet
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -113,8 +113,8 @@ public class NSGAIIIntegerRunner extends AbstractAlgorithmRunner implements jMet
 
     algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
             .setSelectionOperator(selection)
-            .setMaxEvaluations(intHmapProperty.get("maxEvaluations"),)
-            .setPopulationSize(intHmapProperty.get("populationSize"),)
+            .setMaxEvaluations(intHmapProperty.get("maxEvaluations"))
+            .setPopulationSize(intHmapProperty.get("populationSize"))
             .build() ;
 
     AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)

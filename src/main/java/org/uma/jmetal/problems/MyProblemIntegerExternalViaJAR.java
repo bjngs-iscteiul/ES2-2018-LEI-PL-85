@@ -64,7 +64,7 @@ public class MyProblemIntegerExternalViaJAR extends AbstractIntegerProblem imple
 
 	public void start (Integer numberOfVariables) throws JMetalException {
 		setNumberOfVariables(numberOfVariables);
-		setNumberOfObjectives(intHmapProperty.get("numberOfObjectives"););
+		setNumberOfObjectives(intHmapProperty.get("numberOfObjectives"));
 		setName("MyProblemIntegerExternalViaJAR");
 
 		List<Integer> lowerLimit = new ArrayList<>(getNumberOfVariables()) ;

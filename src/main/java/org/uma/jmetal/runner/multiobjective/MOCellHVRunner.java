@@ -46,7 +46,7 @@ public class MOCellHVRunner extends AbstractAlgorithmRunner implements jMetalDin
     if (hmapProperty.size() == hmapProperty.size()) {
       this.doubleHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -55,7 +55,7 @@ public class MOCellHVRunner extends AbstractAlgorithmRunner implements jMetalDin
     if (hmapProperty.size() == hmapProperty.size()) {
       this.intHmapProperty = hmapProperty;
     } else {
-      throw new IllegalArgumentException;
+      throw new IllegalArgumentException();
     }
   }
 
@@ -118,7 +118,7 @@ public class MOCellHVRunner extends AbstractAlgorithmRunner implements jMetalDin
     selection = new BinaryTournamentSelection<DoubleSolution>(new RankingAndCrowdingDistanceComparator<DoubleSolution>());
 
     BoundedArchive<DoubleSolution> archive =
-        new HypervolumeArchive<DoubleSolution>(intHmapProperty.get("maxSizw");, new PISAHypervolume<DoubleSolution>()) ;
+        new HypervolumeArchive<DoubleSolution>(intHmapProperty.get("maxSizw"), new PISAHypervolume<DoubleSolution>()) ;
 
 
 

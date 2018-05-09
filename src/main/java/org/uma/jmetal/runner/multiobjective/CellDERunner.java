@@ -102,7 +102,7 @@ public class CellDERunner extends AbstractAlgorithmRunner implements jMetalDinam
         if (hmapProperty.size() == hmapProperty.size()) {
             this.intHmapProperty = hmapProperty;
         } else {
-            throw new IllegalArgumentException;
+            throw new IllegalArgumentException();
         }
     }
 

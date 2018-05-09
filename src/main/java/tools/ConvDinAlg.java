@@ -42,7 +42,8 @@ public class ConvDinAlg {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (fileText.contains(textSearch)) {
+                //if (fileText.contains(textSearch)) {
+                    if (fileText.contains("")) {
                     String[] lines = fileText.split(";");
 
                     for (int i = 0; i != lines.length; i++) {

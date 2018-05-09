@@ -53,7 +53,7 @@ public class DMOPSOMeasuresRunner extends AbstractAlgorithmRunner implements jMe
         if (hmapProperty.size() == hmapProperty.size()) {
             this.doubleHmapProperty = hmapProperty;
         } else {
-            throw new IllegalArgumentException;
+            throw new IllegalArgumentException();
         }
     }
 
@@ -62,7 +62,7 @@ public class DMOPSOMeasuresRunner extends AbstractAlgorithmRunner implements jMe
         if (hmapProperty.size() == hmapProperty.size()) {
             this.intHmapProperty = hmapProperty;
         } else {
-            throw new IllegalArgumentException;
+            throw new IllegalArgumentException();
         }
     }
 
